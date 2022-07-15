@@ -1,9 +1,15 @@
+<<<<<<< Updated upstream
 import { Input, Table, Space, Popconfirm } from 'antd'
 import axios from 'axios'
+=======
+>>>>>>> Stashed changes
 import React from 'react'
+import { Input, List, Space, Table, Popconfirm } from 'antd';
+import axios from 'axios';
 import './App.css'
+import { findAllByAltText } from '@testing-library/react';
 
-const { Search } = Input
+const { Search } = Input;
 
 class App extends React.Component {
   state = {
@@ -28,27 +34,31 @@ class App extends React.Component {
         title: '操作',
         dataIndex: 'do',
         key: 'do',
-        render: (text, record) => (
-          <Space size="middle">
-            <Popconfirm title="确定要删除吗?"
-              onConfirm={() => this.handleDelete(record.id)}>
-              <a href="#">删除</a>
-            </Popconfirm>
-          </Space>
-        ),
+        render(_, record) {
+          <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.id)}>
+            <a>Delete</a>
+          </Popconfirm>
+        }
       },
     ]
   }
 
   // 搜索
   onSearch = async (value) => {
+<<<<<<< Updated upstream
     const res = await axios.get(`http://localhost:3001/data/?q=${value}`)
     this.setState({
       list: res.data
+=======
+    const res = await axios.get(`http://localhost:3001/data/?q=${value}`);
+    this.setState({
+      list: res.data,
+>>>>>>> Stashed changes
     })
   }
   // 删除
   handleDelete = async (id) => {
+<<<<<<< Updated upstream
     await axios.delete(`http://localhost:3001/data/${id}`)
     this.loadList()
   }
@@ -65,20 +75,35 @@ class App extends React.Component {
     this.loadList()
   }
   render () {
+=======
+    await axios.delete(`http://localhost:3001/data/:${id}`);
+  }
+  // 加载列表
+  loadList = async () => {
+    const res = await axios.get(`http://localhost:3001/data`);
+    this.setState({
+      list: res.data,
+    })
+  }
+
+  componentDidMount() {
+    this.loadList();
+  }
+
+  render() {
+>>>>>>> Stashed changes
     return (
       <div className="container">
         <div className="search-box">
           <Search
-            placeholder="请输入关键词"
+            placeholder="input search text"
             allowClear
-            enterButton="搜索"
+            enterButton="Search"
             size="large"
-            onChange={this.inputChange}
-            value={this.state.keyword}
             onSearch={this.onSearch}
           />
         </div>
-        <Table bordered dataSource={this.state.list} columns={this.state.columns} pagination={false} />
+        <Table dataSource={this.state.list} columns={this.state.columns} />
       </div>
     )
   }
