@@ -1,10 +1,8 @@
 import { Input, Table, Space, Popconfirm } from 'antd'
 import axios from 'axios'
 import React from 'react'
-import { Input, List, Space, Table, Popconfirm } from 'antd';
-import axios from 'axios';
 import './App.css'
-import { findAllByAltText } from '@testing-library/react';
+// import { findAllByAltText } from '@testing-library/react';
 
 const { Search } = Input;
 
@@ -30,12 +28,10 @@ class App extends React.Component {
       {
         title: '操作',
         dataIndex: 'do',
-        key: 'do',
-        render(_, record) {
+        render: (_, record) =>
           <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.id)}>
             <a>Delete</a>
           </Popconfirm>
-        }
       },
     ]
   }
