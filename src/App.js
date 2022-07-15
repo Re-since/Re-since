@@ -1,8 +1,5 @@
-<<<<<<< Updated upstream
 import { Input, Table, Space, Popconfirm } from 'antd'
 import axios from 'axios'
-=======
->>>>>>> Stashed changes
 import React from 'react'
 import { Input, List, Space, Table, Popconfirm } from 'antd';
 import axios from 'axios';
@@ -45,20 +42,15 @@ class App extends React.Component {
 
   // 搜索
   onSearch = async (value) => {
-<<<<<<< Updated upstream
+
     const res = await axios.get(`http://localhost:3001/data/?q=${value}`)
     this.setState({
       list: res.data
-=======
-    const res = await axios.get(`http://localhost:3001/data/?q=${value}`);
-    this.setState({
-      list: res.data,
->>>>>>> Stashed changes
+
     })
   }
   // 删除
   handleDelete = async (id) => {
-<<<<<<< Updated upstream
     await axios.delete(`http://localhost:3001/data/${id}`)
     this.loadList()
   }
@@ -70,28 +62,11 @@ class App extends React.Component {
       list: res.data
     })
   }
-  componentDidMount () {
+  componentDidMount() {
     // 发送接口请求
     this.loadList()
   }
-  render () {
-=======
-    await axios.delete(`http://localhost:3001/data/:${id}`);
-  }
-  // 加载列表
-  loadList = async () => {
-    const res = await axios.get(`http://localhost:3001/data`);
-    this.setState({
-      list: res.data,
-    })
-  }
-
-  componentDidMount() {
-    this.loadList();
-  }
-
   render() {
->>>>>>> Stashed changes
     return (
       <div className="container">
         <div className="search-box">
